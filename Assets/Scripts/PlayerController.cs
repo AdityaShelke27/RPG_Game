@@ -47,11 +47,13 @@ namespace RPG.Control
         }
         bool ImplementWithMovement()
         {
-            RaycastHit hit;
-            if (Physics.Raycast(GetMouseRay(), out hit))
+            if (Physics.Raycast(GetMouseRay(), out RaycastHit hit))
             {
                 if (Input.GetButton("Fire1"))
+                {
                     m_Mover.MoveTo(hit.point);
+                    m_Fighter.Cancel();
+                }
 
                 return true;
             }

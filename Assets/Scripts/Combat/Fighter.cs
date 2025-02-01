@@ -20,13 +20,13 @@ namespace RPG.Combat
         {
             if(m_Target)
             {
-                if(Vector3.Distance(transform.position, m_Target.position) <= m_AttackRange)
+                if(Vector3.Distance(transform.position, m_Target.position) > m_AttackRange)
                 {
-                    m_Mover.Stop();
+                    m_Mover.MoveTo(m_Target.position);
                 }
                 else
                 {
-                    m_Mover.MoveTo(m_Target.position);
+                    m_Mover.Stop();
                 }
             }
         }
@@ -35,6 +35,11 @@ namespace RPG.Combat
         {
             m_Target = combatTarget.transform;
             Debug.Log("Take that you ugly peasant");
+        }
+
+        public void Cancel()
+        {
+            m_Target = null;
         }
     }
 }
